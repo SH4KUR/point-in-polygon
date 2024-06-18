@@ -5,7 +5,7 @@
 
 Console.WriteLine("Point In Polygon\n");
 
-var polygon = new Coordinate[]
+var coordinates = new Coordinate[]
 {
     new(10, 10),
     new(10, 5),
@@ -14,17 +14,17 @@ var polygon = new Coordinate[]
     new(4, 4)
 };
 
-Console.WriteLine(IsInPolygon(new Coordinate(7, 7), polygon));
+Console.WriteLine(IsInPolygon(new Coordinate(7, 7), coordinates));
 
-bool IsInPolygon(Coordinate point, Coordinate[] polygon)
+bool IsInPolygon(Coordinate point, IReadOnlyList<Coordinate> polygon)
 {
     var inside = false;
 
     var x = point.X;
     var y = point.Y;
 
-    int j = polygon.Length - 1;
-    for (int i = 0; i < polygon.Length; i++)
+    var j = polygon.Count - 1;
+    for (var i = 0; i < polygon.Count; i++)
     {
         var xi = polygon[i].X;
         var yi = polygon[i].Y;
@@ -45,4 +45,14 @@ bool IsInPolygon(Coordinate point, Coordinate[] polygon)
     return inside;
 }
 
-public record Coordinate(decimal X, decimal Y);
+public struct Coordinate
+{
+    public Coordinate(decimal x, decimal y)
+    {
+        X = x;
+        Y = y;
+    }
+
+    public decimal X { get; }
+    public decimal Y { get; }
+}
