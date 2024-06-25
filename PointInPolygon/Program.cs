@@ -84,13 +84,109 @@ Console.WriteLine("Point In Polygon\n");
 //              -74.003954031972,
 //              40.735885581234925
 //            ]
+//          ],
+//          [
+//            [
+//              -73.99879790259692,
+//              40.723698596630584
+//            ],
+//            [
+//              -74.00239440362373,
+//              40.731367648753405
+//            ],
+//            [
+//              -73.99892946049677,
+//              40.7327942810974
+//            ],
+//            [
+//              -73.9979651208199,
+//              40.72912063160595
+//            ],
+//            [
+//              -73.99705928557736,
+//              40.72547717066436
+//            ],
+//            [
+//              -73.99896454007687,
+//              40.72652000088743
+//            ],
+//            [
+//              -73.99879790259692,
+//              40.723698596630584
+//            ]
 //          ]
 //        ],
 //        "type": "Polygon"
 //      }
+//    },
+//    {
+//      "type": "Feature",
+//      "properties": {},
+//      "geometry": {
+//        "coordinates": [
+//          -73.9890201007582,
+//          40.73013326038043
+//        ],
+//        "type": "Point"
+//      }
+//    },
+//    {
+//      "type": "Feature",
+//      "properties": {},
+//      "geometry": {
+//        "coordinates": [
+//          -73.98917989840878,
+//          40.73467450893244
+//        ],
+//        "type": "Point"
+//      }
+//    },
+//    {
+//      "type": "Feature",
+//      "properties": {},
+//      "geometry": {
+//        "coordinates": [
+//          -73.99824569052173,
+//          40.73528496479037
+//        ],
+//        "type": "Point"
+//      }
+//    },
+//    {
+//      "type": "Feature",
+//      "properties": {},
+//      "geometry": {
+//        "coordinates": [
+//          -73.99592472494311,
+//          40.727982468373796
+//        ],
+//        "type": "Point"
+//      }
+//    },
+//    {
+//      "type": "Feature",
+//      "properties": {},
+//      "geometry": {
+//        "coordinates": [
+//          -73.99858841132297,
+//          40.72569966768063
+//        ],
+//        "type": "Point"
+//      }
+//    },
+//    {
+//      "type": "Feature",
+//      "properties": {},
+//      "geometry": {
+//        "coordinates": [
+//          -73.99768842359245,
+//          40.726323420600494
+//        ],
+//        "type": "Point"
+//      }
 //    }
 //  ]
-//} 
+//}
 
 #endregion
 
@@ -107,16 +203,37 @@ var coordinates = new Coordinate[]
     new(-73.98441991421186, 40.72471673113796),
     new(-73.98539428169381, 40.733513166474125),
     new(-73.99485478500729, 40.73144395163217),
+
     new(-74.003954031972, 40.735885581234925),
     new(-74.003954031972, 40.73421727480496),
     new(-73.99776128128958, 40.73421727480496),
     new(-73.99776128128958, 40.735885581234925),
     new(-74.003954031972, 40.735885581234925),
+
+    new(-73.99879790259692, 40.723698596630584),
+    new(-73.99896454007687, 40.72652000088743),
+    new(-73.99705928557736, 40.72547717066436),
+    new(-73.9979651208199, 40.72912063160595),
+    new(-73.99892946049677, 40.7327942810974),
+    new(-74.00239440362373, 40.731367648753405),
+    new(-73.99879790259692, 40.723698596630584),
 };
 
-var pointCoordinates = new Coordinate(-73.98727256041877, 40.73642068187522);
+var pointIn1 = new Coordinate(-73.98917989840878, 40.73467450893244);
+var pointIn2 = new Coordinate(-73.99592472494311, 40.727982468373796);
+var pointIn3 = new Coordinate(-73.99858841132297, 40.72569966768063);
 
-Console.WriteLine(IsInPolygon(pointCoordinates, coordinates));
+Console.WriteLine($"{nameof(pointIn1)} - {IsInPolygon(pointIn1, coordinates)}");
+Console.WriteLine($"{nameof(pointIn2)} - {IsInPolygon(pointIn2, coordinates)}");
+Console.WriteLine($"{nameof(pointIn3)} - {IsInPolygon(pointIn3, coordinates)}");
+
+var pointOut1 = new Coordinate(-73.9890201007582, 40.73013326038043);
+var pointOut2 = new Coordinate(-73.99824569052173, 40.73528496479037);
+var pointOut3 = new Coordinate(-73.99768842359245, 40.726323420600494);
+
+Console.WriteLine($"{nameof(pointOut1)} - {IsInPolygon(pointOut1, coordinates)}");
+Console.WriteLine($"{nameof(pointOut2)} - {IsInPolygon(pointOut2, coordinates)}");
+Console.WriteLine($"{nameof(pointOut3)} - {IsInPolygon(pointOut3, coordinates)}");
 
 bool IsInPolygon(Coordinate point, IReadOnlyList<Coordinate> polygon)
 {
