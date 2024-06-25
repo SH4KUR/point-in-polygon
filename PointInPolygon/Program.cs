@@ -235,6 +235,9 @@ Console.WriteLine($"{nameof(pointOut1)} - {IsInPolygon(pointOut1, coordinates)}"
 Console.WriteLine($"{nameof(pointOut2)} - {IsInPolygon(pointOut2, coordinates)}");
 Console.WriteLine($"{nameof(pointOut3)} - {IsInPolygon(pointOut3, coordinates)}");
 
+Console.Write("\nPress ENTER to exit:");
+Console.ReadLine();
+
 bool IsInPolygon(Coordinate point, IReadOnlyList<Coordinate> polygon)
 {
     var inside = false;
@@ -250,13 +253,19 @@ bool IsInPolygon(Coordinate point, IReadOnlyList<Coordinate> polygon)
         var xj = polygon[j].X;
         var yj = polygon[j].Y;
 
-        if (yi < y && yj >= y || yj < y && yi >= y)
+        if ((yi < y && yj >= y || yj < y && yi >= y) && (xi + (y - yi) / (yj - yi) * (xj - xi) < x))
         {
-            if (xi + (y - yi) / (yj - yi) * (xj - xi) < x)
-            {
-                inside = !inside;
-            }
+            inside = !inside;
         }
+
+        // the same thing, but with two if statements
+        //if (yi < y && yj >= y || yj < y && yi >= y)
+        //{
+        //    if (xi + (y - yi) / (yj - yi) * (xj - xi) < x)
+        //    {
+        //        inside = !inside;
+        //    }
+        //}
 
         j = i;
     }
